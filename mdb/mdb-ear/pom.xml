@@ -1,0 +1,55 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <groupId>org.hornetq.example.mdb</groupId>
+        <artifactId>mdb-pom</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.andy.mdb</groupId>
+    <artifactId>mdb-ear</artifactId>
+    <packaging>ear</packaging>
+    <version>1.0.0</version>
+
+    <dependencies>
+       <!-- <dependency>
+            <groupId>org.jboss.javaee</groupId>
+            <artifactId>jboss-jms-api</artifactId>
+            <scope>compile</scope>
+            <version>1.1.0.GA</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.ejb</groupId>
+            <artifactId>ejb-api</artifactId>
+            <version>3.0</version>
+            <scope>compile</scope>
+        </dependency>-->
+        <dependency>
+            <groupId>org.andy.mdb</groupId>
+            <artifactId>mdb-jar</artifactId> <scope>runtime</scope>
+            <version>1.0.0</version>
+            <type>ejb</type>
+        </dependency>
+    </dependencies>
+
+    <build>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-ear-plugin</artifactId>
+            <version>2.5</version>
+            <configuration>
+              <modules>
+                <ejbModule>
+                    <groupId>org.andy.mdb</groupId>
+                    <artifactId>mdb-jar</artifactId>
+                </ejbModule>
+              </modules>
+            </configuration>
+
+        </plugin>
+      </plugins>
+    </build>
+
+</project>
