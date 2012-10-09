@@ -5,13 +5,7 @@ import org.hornetq.api.jms.HornetQJMSClient;
 import org.hornetq.api.jms.JMSFactoryType;
 import org.hornetq.core.remoting.impl.netty.NettyConnectorFactory;
 
-import javax.jms.Connection;
-import javax.jms.ConnectionFactory;
-import javax.jms.MessageConsumer;
-import javax.jms.MessageProducer;
-import javax.jms.Queue;
-import javax.jms.Session;
-import javax.jms.TextMessage;
+import javax.jms.*;
 import javax.naming.InitialContext;
 
 /**
@@ -41,7 +35,7 @@ public class MDBClient
          Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
          //Step 6. Create a JMS Message Producer
-         MessageProducer producer = session.createProducer(queue);
+         MessageProducer producer = session.createProducer(queue); producer.setDeliveryMode(DeliveryMode.PERSISTENT);
 
          //Step 7. Create a Text Message
          TextMessage message = session.createTextMessage("This is a text message");
@@ -51,6 +45,7 @@ public class MDBClient
          //Step 8. Send the Message
          producer.send(message);
 
+         System.exit(0);
          //Step 15. We lookup the reply queue
          queue = HornetQJMSClient.createQueue("mdbReplyQueue");
 
@@ -61,6 +56,10 @@ public class MDBClient
          connection.start();
 
          //Step 18. We receive the message and print it out
+         message = (TextMessage) messageConsumer.receive(5000);
+
+         System.out.println("message.getText() = " + message.getText());
+
          message = (TextMessage) messageConsumer.receive(5000);
 
          System.out.println("message.getText() = " + message.getText());
