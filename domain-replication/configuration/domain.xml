@@ -1063,6 +1063,7 @@
 		    <cluster-user>hornetqclusteruser</cluster-user>
                     <cluster-password>hornetq12£</cluster-password>
 		    <shared-store>false</shared-store>
+		    <check-for-live-server>true</check-for-live-server>
                     <persistence-enabled>true</persistence-enabled>
                     <journal-file-size>102400</journal-file-size>
                     <journal-min-files>2</journal-min-files>
