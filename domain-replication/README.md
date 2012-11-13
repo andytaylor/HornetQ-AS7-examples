@@ -52,7 +52,7 @@ we can then stop the live server by stopping the process with the command:
 
 we can view the status of the live server with the command:
 
-        /host=master/server-config=server-one:read-attribute(name=status)
+        /host=master/server-config=hornetq-live:read-attribute(name=status)
         {
             "outcome" => "success",
             "result" => "STOPPED"
