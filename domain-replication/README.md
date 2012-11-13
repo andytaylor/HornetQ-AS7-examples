@@ -9,7 +9,7 @@ This example demonstrates to configure the JBoss AS7 server to set up and test f
 will deploy and start a live and backup server configured to replicate, we will the use the JBoss CLI to kill the live
 server and observe the backup server take over, we will then restart the live server and observe fail back occurring.
 
-_NOTE: In this example the live and backup server are on the same machine but in reality you would deploy each server in
+_NOTE_: In this example the live and backup server are on the same machine but in reality you would deploy each server in
 a different slave host
 
 Download and start the AS7 domain server
@@ -52,23 +52,10 @@ we can then stop the live server by stopping the process with the command:
 
 we can view the status of the live server with the command:
 
-        /host=master/server-config=hornetq-live:read-resource(include-runtime=true)
+        /host=master/server-config=server-one:read-attribute(name=status)
         {
             "outcome" => "success",
-            "result" => {
-                "auto-start" => true,
-                "cpu-affinity" => undefined,
-                "group" => "hornetq-live-server-group",
-                "interface" => undefined,
-                "jvm" => undefined,
-                "name" => "hornetq-live",
-                "path" => undefined,
-                "priority" => undefined,
-                "socket-binding-group" => undefined,
-                "socket-binding-port-offset" => 0,
-                "status" => "STOPPED",
-                "system-property" => undefined
-            }
+            "result" => "STOPPED"
         }
 
 if you look in the servers console you should see the backup starting:
